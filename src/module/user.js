@@ -41,7 +41,7 @@ function User() {
                         <td>{index+1}</td>
                         <td>{item.id}</td>
                         <td>{item.username}</td>
-                        <td><ViewUser/></td>
+                        <td><ViewUser item={item} index={index}/></td>
                     </tr>
                 })}
             </tbody>
