@@ -5,11 +5,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from "react";
 import User from "./module/user"
+import axios from "axios";
 
 function RouteList() {
 
     const [userLogin,setUserLogin] = useState(localStorage.getItem("userLogin") === "true" ? true : false)
     const [userToken,setUserToken] = useState(localStorage.getItem("userToken") ? localStorage.getItem("userToken") : "")
+
+    console.log("userToken",userToken)
+
+    axios.defaults.headers.common['Authorization'] = userToken;
 
     const setMessage = (type, message) => {
         type === "success" ? toast(message) : toast.error(message)
