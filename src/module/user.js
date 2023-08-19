@@ -3,8 +3,7 @@ import { useEffect, useState } from "react"
 import ViewUser from "./viewUser"
 import DeleteUser from "./deleteUser"
 
-
-function User() {
+function User({setMessage}) {
 
     const [data, setData] = useState([])
 
@@ -44,7 +43,7 @@ function User() {
                         <td>{item.username}</td>
                         <td>
                             <ViewUser item={item} index={index}/>
-                            <DeleteUser item={item} index={index}/>
+                            <DeleteUser item={item} index={index} setMessage={setMessage} getUser={getUser}/>
                         </td>
                     </tr>
                 })}

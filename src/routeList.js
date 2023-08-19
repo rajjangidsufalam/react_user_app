@@ -35,7 +35,7 @@ function RouteList() {
                     {userLogin
                         ?
                         <>
-                            <Route path="user" element={<User></User>}/>
+                            <Route path="user" element={<User setMessage={setMessage}></User>}/>
                             <Route path="*" element={<Navigate to="/user"/>} />
                         </>
                         :
