@@ -1,8 +1,14 @@
 import { BrowserRouter, Routes, Route, Outlet, NavLink } from "react-router-dom";
 import Login from "./module/login"
 import Register from "./module/register"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from "react";
 
 function RouteList() {
+    useEffect(()=>{
+        toast("Working Fine")
+    },[])
     return (
         <BrowserRouter>
             <Routes>
@@ -28,6 +34,7 @@ function Navbar() {
                 </li>
             </ul>
         </nav>
+        <ToastContainer/>
         <Outlet/>
     </>)
 }
