@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 
-function Register() {
+function Register({setMessage}) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -12,16 +12,16 @@ function Register() {
                 username, password 
             }).then(({ data }) => {
                 if (data?.id) {
-                    alert("User Created Successfully")
+                    setMessage("success","User Created Successfully")
                 } else {
-                    alert(data?.message ?? "SomeThing Went Wrong")
+                    setMessage("error",data?.message ?? "SomeThing Went Wrong")
                 }
             })
             console.log("handleSubmit")
         }
         catch (error) {
             console.error(error)
-            alert(error?.response?.data?.message ?? "SomeThing Went Wrong")
+            setMessage("error",error?.response?.data?.message ?? "SomeThing Went Wrong")
         }
     }
     return (

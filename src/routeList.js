@@ -6,15 +6,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from "react";
 
 function RouteList() {
-    useEffect(()=>{
-        toast("Working Fine")
-    },[])
+    const setMessage = (type,message) => {
+        toast(message)
+    }
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Navbar/>}>
                     <Route path="login" element={<Login></Login>} />
-                    <Route path="register" element={<Register></Register>} />
+                    <Route path="register" element={<Register setMessage={setMessage}></Register>} />
                 </Route>
             </Routes>
         </BrowserRouter>
