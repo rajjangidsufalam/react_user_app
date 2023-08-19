@@ -7,16 +7,27 @@ import { useEffect } from "react";
 import User from "./module/user"
 
 function RouteList() {
-    const setMessage = (type,message) => {
-        type === "success" ? toast(message) : toast.error(message)  
+
+    let userLogin = false
+
+    const setMessage = (type, message) => {
+        type === "success" ? toast(message) : toast.error(message)
     }
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navbar/>}>
-                    <Route path="login" element={<Login setMessage={setMessage}></Login>} />
-                    <Route path="register" element={<Register setMessage={setMessage}></Register>} />
-                    <Route path="user" element={<User></User>} />
+                <Route path="/" element={<Navbar />}>
+                    {userLogin
+                        ?
+                        <>
+                            <Route path="user" element={<User></User>} />
+                        </>
+                        :
+                        <>
+                            <Route path="login" element={<Login setMessage={setMessage}></Login>} />
+                            <Route path="register" element={<Register setMessage={setMessage}></Register>} />
+                        </>
+                    }
                 </Route>
             </Routes>
         </BrowserRouter>
@@ -36,8 +47,8 @@ function Navbar() {
                 </li>
             </ul>
         </nav>
-        <ToastContainer/>
-        <Outlet/>
+        <ToastContainer />
+        <Outlet />
     </>)
 }
 
