@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 function RouteList() {
     const setMessage = (type,message) => {
-        toast(message)
+        type === "success" ? toast(message) : toast.error(message)  
     }
     return (
         <BrowserRouter>
