@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 
-function Login({setMessage,setUserLogin}) {
+function Login({setMessage,setUserAuth}) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -14,7 +14,7 @@ function Login({setMessage,setUserLogin}) {
                 console.log("login response",data)
                 if (data?.token) {
                     setMessage("success","Login Successfully")
-                    setUserLogin(true)
+                    setUserAuth(true,data?.token)
                 } else {
                     setMessage("error",data?.message ?? "SomeThing Went Wrong")
                 }

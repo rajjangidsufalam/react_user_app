@@ -8,10 +8,18 @@ import User from "./module/user"
 
 function RouteList() {
 
-    const [userLogin,setUserLogin] = useState(false)
+    const [userLogin,setUserLogin] = useState(localStorage.getItem("userLogin") === "true" ? true : false)
+    const [userToken,setUserToken] = useState(localStorage.getItem("userToken") ? localStorage.getItem("userToken") : "")
 
     const setMessage = (type, message) => {
         type === "success" ? toast(message) : toast.error(message)
+    }
+
+    const setUserAuth = (value,token) => {
+        localStorage.setItem("userLogin",value)
+        localStorage.setItem("userToken",token)
+        setUserLogin(value)
+        setUserToken(token)
     }
 
     return (
@@ -26,7 +34,7 @@ function RouteList() {
                         </>
                         :
                         <>
-                            <Route path="login" element={<Login setMessage={setMessage} setUserLogin={setUserLogin}></Login>} />
+                            <Route path="login" element={<Login setMessage={setMessage} setUserAuth={setUserAuth}></Login>} />
                             <Route path="register" element={<Register setMessage={setMessage}></Register>} />
                             <Route path="*" element={<Navigate to="/login"/>} />
                         </>
