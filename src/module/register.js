@@ -5,22 +5,23 @@ function Register() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        try{
-            axios.post('http://localhost:3001/api/register',{ 
-                username, 
-                password 
-            }).then((result)=>{
-                console.log("result",result)
-            })
-            .catch((err)=>{
-                alert(err?.response?.data?.message)
+        try {
+            await axios.post('http://localhost:3001/api/register', { 
+                username, password 
+            }).then(({ data }) => {
+                if (data?.id) {
+                    alert("User Created Successfully")
+                } else {
+                    alert(data?.message ?? "SomeThing Went Wrong")
+                }
             })
             console.log("handleSubmit")
         }
-        catch(error){
+        catch (error) {
             console.error(error)
+            alert(error?.response?.data?.message ?? "SomeThing Went Wrong")
         }
     }
     return (
