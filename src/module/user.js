@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import ViewUser from "./viewUser"
+import DeleteUser from "./deleteUser"
 
 
 function User() {
@@ -41,7 +42,10 @@ function User() {
                         <td>{index+1}</td>
                         <td>{item.id}</td>
                         <td>{item.username}</td>
-                        <td><ViewUser item={item} index={index}/></td>
+                        <td>
+                            <ViewUser item={item} index={index}/>
+                            <DeleteUser item={item} index={index}/>
+                        </td>
                     </tr>
                 })}
             </tbody>
