@@ -1,9 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 
-function Login({setMessage}) {
-    const navigate = useNavigate()
+function Login({setMessage,setUserLogin}) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -16,7 +14,7 @@ function Login({setMessage}) {
                 console.log("login response",data)
                 if (data?.token) {
                     setMessage("success","Login Successfully")
-                    navigate('/login')
+                    setUserLogin(true)
                 } else {
                     setMessage("error",data?.message ?? "SomeThing Went Wrong")
                 }

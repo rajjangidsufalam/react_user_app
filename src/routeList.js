@@ -1,18 +1,19 @@
-import { BrowserRouter, Routes, Route, Outlet, NavLink } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, NavLink, Navigate } from "react-router-dom";
 import Login from "./module/login"
 import Register from "./module/register"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import User from "./module/user"
 
 function RouteList() {
 
-    let userLogin = false
+    const [userLogin,setUserLogin] = useState(false)
 
     const setMessage = (type, message) => {
         type === "success" ? toast(message) : toast.error(message)
     }
+
     return (
         <BrowserRouter>
             <Routes>
@@ -20,12 +21,14 @@ function RouteList() {
                     {userLogin
                         ?
                         <>
-                            <Route path="user" element={<User></User>} />
+                            <Route path="user" element={<User></User>}/>
+                            <Route path="*" element={<Navigate to="/user"/>} />
                         </>
                         :
                         <>
-                            <Route path="login" element={<Login setMessage={setMessage}></Login>} />
+                            <Route path="login" element={<Login setMessage={setMessage} setUserLogin={setUserLogin}></Login>} />
                             <Route path="register" element={<Register setMessage={setMessage}></Register>} />
+                            <Route path="*" element={<Navigate to="/login"/>} />
                         </>
                     }
                 </Route>
