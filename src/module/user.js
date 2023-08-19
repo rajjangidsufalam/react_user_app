@@ -1,38 +1,49 @@
 import axios from "axios"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import ViewUser from "./viewUser"
 
 
 function User() {
 
+    const [data, setData] = useState([])
+
     const getUser = async () => {
-        let response = await axios.get('http://localhost:3001/api/users')
-        console.log("response====",response)
+        try {
+            let response = await axios.get('/users')
+            if (response?.data) {
+                setData(response?.data ?? [])
+            }
+        }
+        catch (error) {
+            console.error(error)
+        }
     }
 
-    useEffect(()=>{
+    console.log(data, "data")
+
+    useEffect(() => {
         getUser()
-    },[])
+    }, [])
 
     return <div className="container col-md-8 mt-3">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
+                    <th>No</th>
+                    <th>ID</th>
+                    <th>User Name</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                </tr>
-                <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
-                </tr>
+                {data.map((item, index) => {
+                    return <tr key={index}>
+                        <td>{index+1}</td>
+                        <td>{item.id}</td>
+                        <td>{item.username}</td>
+                        <td><ViewUser/></td>
+                    </tr>
+                })}
             </tbody>
         </table>
     </div>

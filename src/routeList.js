@@ -14,6 +14,7 @@ function RouteList() {
 
     console.log("userToken",userToken)
 
+    axios.defaults.baseURL = "http://localhost:3001/api";
     axios.defaults.headers.common['Authorization'] = userToken;
 
     const setMessage = (type, message) => {

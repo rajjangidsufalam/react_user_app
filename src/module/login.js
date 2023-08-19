@@ -8,7 +8,7 @@ function Login({setMessage,setUserAuth}) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.post('http://localhost:3001/api/login', { 
+            await axios.post('/login', { 
                 username, password 
             }).then(({ data }) => {
                 console.log("login response",data)

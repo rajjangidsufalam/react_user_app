@@ -10,7 +10,7 @@ function Register({setMessage}) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.post('http://localhost:3001/api/register', { 
+            await axios.post('/register', { 
                 username, password 
             }).then(({ data }) => {
                 if (data?.id) {
