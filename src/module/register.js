@@ -1,7 +1,9 @@
 import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function Register({setMessage}) {
+    const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -13,6 +15,7 @@ function Register({setMessage}) {
             }).then(({ data }) => {
                 if (data?.id) {
                     setMessage("success","User Created Successfully")
+                    navigate('/login')
                 } else {
                     setMessage("error",data?.message ?? "SomeThing Went Wrong")
                 }

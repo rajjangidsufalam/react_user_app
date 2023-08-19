@@ -13,7 +13,7 @@ function RouteList() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Navbar/>}>
-                    <Route path="login" element={<Login></Login>} />
+                    <Route path="login" element={<Login setMessage={setMessage}></Login>} />
                     <Route path="register" element={<Register setMessage={setMessage}></Register>} />
                 </Route>
             </Routes>
