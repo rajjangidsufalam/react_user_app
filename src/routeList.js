@@ -4,6 +4,7 @@ import Register from "./module/register"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from "react";
+import User from "./module/user"
 
 function RouteList() {
     const setMessage = (type,message) => {
@@ -15,6 +16,7 @@ function RouteList() {
                 <Route path="/" element={<Navbar/>}>
                     <Route path="login" element={<Login setMessage={setMessage}></Login>} />
                     <Route path="register" element={<Register setMessage={setMessage}></Register>} />
+                    <Route path="user" element={<User></User>} />
                 </Route>
             </Routes>
         </BrowserRouter>
